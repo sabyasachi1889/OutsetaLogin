@@ -1,0 +1,196 @@
+<script>
+    var breadcrumbs = {
+        "Home": "https://plugins.miniorange.com",
+        "SSO for WordPress": "https://plugins.miniorange.com/wordpress-sso",
+        "Setup Guides": "https://plugins.miniorange.com/wordpress-single-sign-on-sso-with-oauth-openid-connect",
+        "Outseta Single Sign-On (SSO) for WordPress Guide": ""
+    };
+</script>
+<h1 class="mo-page-title">Outseta OAuth and OpenID connect Single Sign-On (SSO) | Outseta SSO Login</h1>
+<h2 id="overview" class="nav-tab nav-link mo-main-head" data-tabtext="Overview">
+    Overview</h2>
+
+<p>The <a href="https://plugins.miniorange.com/wordpress-sso" target="_blank" class="text-color">WordPress OAuth &amp; OpenID Connect Single Sign-On (SSO) plugin</a>
+    enables secure login into WordPress using Outseta as OAuth and OpenID Connect provider. It supports advanced Single Sign-On (SSO) features such as user profile Attribute mapping, Role mapping, etc. Here we will go through a guide to configure SSO between WordPress and Outseta. By the end of this guide, users should be able to login to WordPress from Outseta. To know more about other features we provide in WP OAuth Single Sign-On ( OAuth &amp; OpenID Connect Client ) plugin, you can click here.
+</p>
+
+<div class="plugin-info">
+    <a href="https://wordpress.org/plugins/miniorange-login-with-eve-online-google-facebook/" class="mo-icons-style" target="_blank">
+        <img loading="lazy" src="/wp-content/uploads/2024/07/download-plugin-white.webp" width="32px" height="32px" alt="Outseta single sign on for WordPress">
+        <span class="mo-btn-font">Download Plugin</span>
+    </a>
+
+    <a href="https://plugins.miniorange.com/wordpress-sso#pricing" class="mo-icons-style" target="_blank">
+        <img loading="lazy" class="orange-img" src="/wp-content/uploads/2024/07/plugin-pricing.webp" width="32px" height="32px" alt="plugin pricing button">
+        <img loading="lazy" class="white-img" src="/wp-content/uploads/2024/07/plugin-pricing-white.webp" width="32px" height="32px" alt="plugin pricing button">
+        <span class="mo-btn-font">Pricing Plans</span>
+    </a>
+
+    <a href="https://sandbox.miniorange.com/?mo_plugin=mo_oauth_client" class="mo-icons-style" target="_blank">
+        <img loading="lazy" class="orange-img" src="/wp-content/uploads/2024/07/free-trial.webp" width="32px" height="32px" alt="free trial plugin">
+        <img loading="lazy" class="white-img" src="/wp-content/uploads/2024/07/free-trial-white.webp" width="32px" height="32px" alt="free trial plugin">
+        <span class="mo-btn-font">Free Trial</span>
+    </a>
+</div>
+
+<h2 id="stepa" class="listas-main saml_heading_font" data-navtext="Download And Installation">Pre-requisites : Download And Installation</h2>
+<ul class="authen-sub-points">
+    <li>Log into your WordPress instance as an admin.</li>
+    <li>Go to the WordPress Dashboard -> Plugins and click on Add New.</li>
+    <li>Search for a WordPress OAuth Single Sign-On (SSO) plugin and click on Install Now.</li>
+    <li>Once installed click on Activate.</li>
+</ul>
+
+<a href="https://wordpress.org/plugins/miniorange-login-with-eve-online-google-facebook/" target="_blank">
+    <div class="row oauth-plugin-card">
+        <div class="col-sm-4 bg-primary ">
+            <div class="text-center">
+                <i class="fas fa-download fa-6x icn-padding"></i>
+            </div>
+        </div>
+        <div class="col-sm-8 bg-white ">
+            <h5 class=" text-center font-weight-bold">Get this plugin</h5>
+            <h6 class=" font-weight-bold text-center">WordPress OAuth &amp; OpenID Single Sign-On (SSO)</h6>
+        </div>
+    </div>
+</a>
+
+<h2 id="setup-wordpress-outseta-login" class="nav-tab nav-link mo-main-head" data-tabtext="Configuration Steps">Steps to configure Outseta Single Sign-On (SSO) Login into WordPress</h2>
+
+<h3 id="setup-outseta-provider" class="nav-tab nav-link mo-sub-head" data-tabtext="1. Setup Outseta as OAuth Provider">Step 1. Setup Outseta as OAuth Provider</h3>
+<ul class="mo-authen-new-points">
+    <li>Go to the developer account of Outseta and signup/login.</li>
+    <li>Click on Add Application to create a new application.</li>
+    <li>Enter the app name and click on Save Button.</li>
+    <li>Enter the Redirect/Callback URL which you will get from the OAuth Single Sign-On (SSO) plugin. click on Save Button.</li>
+    <li>Copy the Client ID and Client Secret and save it under the Client ID and Client Secret in your WordPress OAuth Single Sign-On (SSO) Plugin Configuration.</li>
+    <li>You have successfully configured Outseta as OAuth Provider for achieving Outseta Single Sign-On (SSO) with WordPress for user authentication.</li>
+</ul>
+
+<h3 id="wp-as-oauth-client" class="nav-tab nav-link mo-sub-head" data-tabtext="2. Setup WordPress as OAuth Client">Step 2: Setup WordPress as OAuth Client</h3>
+<section>
+    <ul class="mo-tabs">
+        <li id="free-plan-1" class="mo-tab-link active-tab">Free</li>
+        <li id="prem-plan-1" class="mo-tab-link">Premium</li>
+    </ul>
+
+    <section>
+        <div class="free-plan-1 hide-section mo-active-section">
+            <ul class="mo-authen-new-points">
+                <li>Go to <b>Configure OAuth</b> tab and click <b>Add New Application</b> to add a new client application into your website.</li>
+                <li>Choose your Application from the list of OAuth / OpenID Connect Providers, Here <b>Custom OAuth 2.0 App</b>.</li>
+                <li>Copy the <b>Callback URL</b> to be used in OAuth Provider Configuration. Click Next.</li>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped">
+                        <tbody>
+                            <tr>
+                                <td><strong>Scope</strong></td>
+                                <td>openid profile email</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Authorization Endpoint</strong></td>
+                                <td>https://&lt;your-site&gt;.outseta.com/connect/authorize</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Access Token Endpoint</strong></td>
+                                <td>https://&lt;your-site&gt;.outseta.com/connect/token</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Get User Info Endpoint</strong></td>
+                                <td>https://&lt;your-site&gt;.outseta.com/connect/userinfo</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <li>Enter the Client Credentials like <b>Client ID</b> &amp; <b>Client Secret</b> as shown in the setup dialogue box.</li>
+                <li>Enter the scope value as <b>openid profile email</b>. Click Next.</li>
+                <li>Click on <b>Finish</b> to save the configuration.</li>
+                <li>You have successfully configured WordPress as OAuth Client for achieving user authentication with Outseta Single Sign-On (SSO) login into your WordPress Site.</li>
+            </ul>
+        </div>
+
+        <div class="prem-plan-1 hide-section">
+            <ul class="mo-authen-new-points">
+                <li>Go to Configure OAuth tab and search your application name to add a new client application into your website, Here <b>Custom OAuth 2.0 App</b>.</li>
+                <li>Configure App Name, Client ID, Client Secret from Outseta SSO application.</li>
+                <li>Choose your Grant Type from the list of options &amp; Click on Save Settings to save the configuration.</li>
+            </ul>
+        </div>
+    </section>
+</section>
+
+<h3 id="attribute-mapping-outseta" class="nav-tab nav-link mo-sub-head" data-tabtext="3. User Attribute Mapping">Step 3: User Attribute Mapping</h3>
+<ul class="mo-authen-new-points">
+    <li>User Attribute Mapping is mandatory for enabling users to successfully Single Sign-On into WordPress using Outseta SSO.</li>
+    <li>Go to Configure OAuth tab. Scroll down and click on <b>Test Configuration</b>.</li>
+    <li>You will see all the values returned by your OAuth Provider to WordPress in a table.</li>
+    <li>If you don't see value for First Name, Last Name, Email or Username, make the required settings in your OAuth Provider to return this information.</li>
+    <li>Once you see all the values in Test Configuration, go to Attribute / Role Mapping tab, select attributes from Username dropdown and click on Save.</li>
+</ul>
+
+<h3 id="connect-with-outseta" class="nav-tab nav-link mo-sub-head" data-tabtext="4. Sign In Settings">Step 4: Sign In Settings</h3>
+<section>
+    <ul class="mo-tabs">
+        <li id="free-plan" class="mo-tab-link">WordPress 5.7 and below</li>
+        <li id="std-plan" class="mo-tab-link">WordPress 5.8</li>
+        <li id="prem-plan" class="mo-tab-link active-tab">WordPress 5.9 and above</li>
+    </ul>
+
+    <section>
+        <div class="free-plan hide-section">
+            <ul class="mo-authen-new-points">
+                <li>Go to <strong>WordPress Left Panel &gt; Appearances &gt; Widgets</strong>.</li>
+                <li>Select <strong>miniOrange OAuth</strong>. Drag and drop to your favourite location and save.</li>
+            </ul>
+        </div>
+
+        <div class="std-plan hide-section">
+            <ul class="mo-authen-new-points">
+                <li>Go to <strong>WordPress Left Panel &gt; Appearances &gt; Widgets</strong>.</li>
+                <li>Select <strong>miniOrange OAuth</strong>. Drag and drop to your favourite location and save.</li>
+            </ul>
+        </div>
+
+        <div class="prem-plan hide-section mo-active-section">
+            <ul class="mo-authen-new-points">
+                <li>Make sure the <b>"Show on login page"</b> option is enabled for your application.</li>
+                <li>Now, go to your <strong>WordPress Login</strong> page. <b>(Eg. https://&lt;your-wordpress-domain&gt;/wp-login.php)</b></li>
+                <li>You will see an Outseta SSO login button there. Once you click the login button, you will be able to test the Outseta Single Sign-On (SSO).</li>
+            </ul>
+        </div>
+    </section>
+</section>
+
+<p>
+    In this Guide, you have successfully configured Outseta Single Sign-On (SSO) by configuring Outseta as OAuth Provider and WordPress as OAuth Client using our WP OAuth Single Sign-On ( OAuth / OpenID Connect Client ) plugin. This solution ensures that you are ready to roll out secure access to your WordPress site using Outseta login credentials within minutes.
+</p>
+
+<h3 id="mo-related-articles" class="nav-tab nav-link mo-main-head" style="text-transform: uppercase;" data-tabtext="Additional Resources">Additional Resources</h3>
+<br>
+<ul class="mo-related-block">
+    <li>
+        <a href="https://blog.miniorange.com/what-is-oauth-2/" target="_blank" class="mo-container-align">
+            <div class="mo-rel-art">What is OAuth 2.0?</div>
+        </a>
+    </li>
+
+    <li>
+        <a href="https://plugins.miniorange.com/wordpress-single-sign-on-sso-with-oauth-openid-connect" target="_blank" class="mo-container-align">
+            <div class="mo-rel-art">Outseta OAuth Single Sign-On (SSO)</div>
+        </a>
+    </li>
+
+    <li>
+        <a href="https://faq.miniorange.com/kb/oauth-openid-connect/" target="_blank" class="mo-container-align">
+            <div class="mo-rel-art">Frequently Asked Questions (FAQs)</div>
+        </a>
+    </li>
+</ul>
+
+<div class="mo-note">
+    <p class="mo-note-text">
+        Mail us on <b>oauthsupport@xecurify.com</b> for quick guidance(via email/meeting) on your requirement and our team will help you to select the best suitable solution/plan as per your requirement.
+    </p>
+</div>
